@@ -2,18 +2,18 @@
  * array must be sorted!
  * [low, high) <- inclusive of low, exclusive of high
  */
-export default function bs_list(haystack: number[], needle: number): boolean {
+export default function bs_list(haystack: number[], target: number): boolean {
     let low = 0;
     let high = haystack.length;
 
     while (low < high) {
         let mid = Math.floor(low + (high - low) / 2);
 
-        const v = haystack[mid];
+        const midpointValue = haystack[mid];
 
-        if (v === needle) {
+        if (midpointValue === target) {
             return true;
-        } else if (v > needle) {
+        } else if (midpointValue > target) {
             // midpoint value greater than target
             // exclude top half
             high = mid;
