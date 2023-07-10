@@ -24,5 +24,16 @@ export default function two_crystal_balls(breaks: boolean[]): number {
         high += jump;
     }
 
+    // after breaking out of while loop
+    // high will be greater then length
+    // set it to length
+    // to cover final gap of array that has not been traversed
+    high = breaks.length;
+
+    for (let index = low; index <= high; index++) {
+        if (breaks[index]) {
+            return index;
+        }
+    }
     return -1;
 }
