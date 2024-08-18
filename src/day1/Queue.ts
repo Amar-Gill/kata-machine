@@ -31,24 +31,23 @@ export default class Queue<T> {
 
   // O(1)
   deque(): T | undefined {
-    if (!this.head) {
-      return undefined;
-    }
-
-    this.length--
-
     const head = this.head;
 
-    this.head = this.head.next;
-
-    // free memory
-    head.next = undefined
+    if (this.head) {
+      this.head = this.head.next;
+      this.length--
+    }
 
     if (this.length === 0) {
       this.tail = undefined;
     }
 
-    return head.value;
+    // free memory
+    if (head) {
+      head.next = undefined;
+    }
+
+    return head?.value;
   }
 
   // O(1)
