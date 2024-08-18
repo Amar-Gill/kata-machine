@@ -20,12 +20,12 @@ export default class Queue<T> {
 
     const node = { value: item }
 
-    if (!this.tail) {
-      this.tail = this.head = node;
-      return;
+    if (this.tail) {
+      this.tail.next = node;
+    } else {
+      this.head = node;
     }
 
-    this.tail.next = node;
     this.tail = node;
   }
 
