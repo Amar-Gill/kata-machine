@@ -2,9 +2,9 @@ export default class ArrayList<T> {
   public length: number;
   private a: Array<T | undefined>;
 
-  constructor(length: number) {
-    this.length = length;
-    this.a = new Array(length).fill(undefined)
+  constructor(capacity: number) {
+    this.length = 0
+    this.a = new Array(capacity).fill(undefined)
   }
 
   prepend(item: T): void { }
@@ -18,15 +18,15 @@ export default class ArrayList<T> {
       this.a = this.a.concat(new Array(this.length).fill(undefined))
     }
 
+    this.a[this.length] = item;
+
     this.length++;
-
-    this.a.push(item);
-
   }
 
   remove(item: T): T | undefined {
     return;
   }
+
   get(idx: number): T | undefined {
     return;
   }
