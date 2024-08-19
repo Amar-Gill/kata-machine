@@ -28,9 +28,35 @@ export default class ArrayList<T> {
   }
 
   get(idx: number): T | undefined {
-    return;
+    if (idx > this.length) {
+      return undefined;
+    }
+
+    return this.a.at(idx);
   }
+
   removeAt(idx: number): T | undefined {
-    return;
+    if (idx > this.length) {
+      return undefined;
+    }
+
+    const el = this.a.at(idx);
+
+    for (let i = 0; i < this.length; i++) {
+      // up to and including idx array can remain unchanged
+      if (i <= idx) {
+        continue;
+      }
+      // shift back everything after idx
+      this.a[i - 1] = this.a[i]
+    }
+
+    // release last el
+    this.a[this.length - 1] = undefined;
+
+
+    this.length--
+
+    return el;
   }
 }
