@@ -7,7 +7,22 @@ export default class ArrayList<T> {
     this.a = new Array(capacity).fill(undefined)
   }
 
-  prepend(item: T): void { }
+  prepend(item: T): void {
+    if (this.a.length === this.length) {
+      this.a = this.a.concat(new Array(this.length).fill(undefined))
+    }
+
+    const newArray = new Array(this.a.length);
+    newArray[0] = item;
+
+    for (let i = 0; i < this.length; i++) {
+      newArray[i + 1] = this.a[i];
+    }
+
+    this.length++
+
+    this.a = newArray;
+  }
 
   insertAt(item: T, idx: number): void { }
 
