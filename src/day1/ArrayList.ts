@@ -24,7 +24,37 @@ export default class ArrayList<T> {
   }
 
   remove(item: T): T | undefined {
-    return;
+    let removedElement: T | undefined;
+    let idx = -1;
+
+    // iterate through array and find the item and it's index
+    for (let i = 0; i < this.length; i++) {
+      if (this.a[i] === item) {
+        removedElement = this.a[i]
+        idx = i;
+        break;
+      }
+    }
+
+    // if element was found, we must shift the rest of the array elements
+    // that's why we initialize idx to -1 so we can use it in condition
+    if (idx >= 0) {
+      // set el at idx to undefined and shift elements
+      for (let i = idx; i < this.length; i++) {
+        if (i === idx) {
+          this.a[i] = undefined;
+          continue;
+        }
+        this.a[i - 1] = this.a[i]
+      }
+
+      // release last el
+      this.a[this.length - 1] = undefined;
+
+      this.length--
+    }
+
+    return removedElement;
   }
 
   get(idx: number): T | undefined {
