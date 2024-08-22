@@ -7,6 +7,7 @@ export default class ArrayList<T> {
     this.a = new Array(capacity).fill(undefined)
   }
 
+  // O(N)
   prepend(item: T): void {
     if (this.a.length === this.length) {
       this.a = this.a.concat(new Array(this.length).fill(undefined))
@@ -24,6 +25,7 @@ export default class ArrayList<T> {
     this.a = newArray;
   }
 
+  // O(N)
   insertAt(item: T, idx: number): void {
     // if idx within length, new length is length+1
     // else new length is the given idx + 1
@@ -58,6 +60,7 @@ export default class ArrayList<T> {
     this.length++;
   }
 
+  // O(N)
   remove(item: T): T | undefined {
     let removedElement: T | undefined;
     let idx = -1;
@@ -92,6 +95,7 @@ export default class ArrayList<T> {
     return removedElement;
   }
 
+  // O(1)
   get(idx: number): T | undefined {
     if (idx > this.length) {
       return undefined;
@@ -100,6 +104,7 @@ export default class ArrayList<T> {
     return this.a.at(idx);
   }
 
+  // O(N)
   removeAt(idx: number): T | undefined {
     if (idx > this.length) {
       return undefined;
