@@ -24,7 +24,27 @@ export default class ArrayList<T> {
     this.a = newArray;
   }
 
-  insertAt(item: T, idx: number): void { }
+  insertAt(item: T, idx: number): void {
+    // if idx within length, new length is length+1
+    // else new length is the given idx + 1
+    // and we must grow array
+    const newListLength = Math.max(this.length + 1, idx + 1);
+
+    const newArray = new Array(newListLength).fill(undefined);
+
+    for (let i = 0; i < newListLength; ++i) {
+      if (i < idx) {
+        newArray[i] = this.a.at(i) || undefined;
+      } else if (idx === i) {
+        newArray[i] = item;
+      } else {
+        newArray[i + 1] = this.a.at(i) || undefined
+      }
+    }
+
+    this.a = newArray;
+    this.length = newListLength;
+  }
 
   // O(1) if within capacity (initial length)
   // otherwise O(N) if we need to grow the array because each el must be copied into new array
