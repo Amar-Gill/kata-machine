@@ -7,10 +7,12 @@ type Node<T> = {
 export default class DoublyLinkedList<T> {
     public length: number;
     private head?: Node<T>;
+    private tail?: Node<T>;
 
     constructor() {
         this.length = 0;
         this.head = undefined;
+        this.tail = undefined;
     }
 
     prepend(item: T): void {
@@ -18,7 +20,7 @@ export default class DoublyLinkedList<T> {
         this.length++;
 
         if (!this.head) {
-            this.head = newNode;
+            this.head = this.tail = newNode;
             return;
         }
 
