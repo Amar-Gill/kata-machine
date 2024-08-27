@@ -59,7 +59,21 @@ export default class DoublyLinkedList<T> {
         }
     }
 
-    append(item: T): void {}
+    append(item: T): void {
+        this.length++;
+
+        const node: Node<T> = { value: item };
+
+        if (!this.tail) {
+            this.head = this.tail = node;
+            return;
+        }
+
+        node.prev = this.tail;
+        this.tail.next = node;
+        this.tail = node;
+    }
+
     remove(item: T): T | undefined {}
     get(idx: number): T | undefined {}
     removeAt(idx: number): T | undefined {}
