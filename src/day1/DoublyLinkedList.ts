@@ -123,6 +123,8 @@ export default class DoublyLinkedList<T> {
         if (!node) {
             return undefined;
         }
+
+        return node.value;
     }
 
     private getAt(idx: number): Node<T> | undefined {
