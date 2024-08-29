@@ -41,11 +41,7 @@ export default class DoublyLinkedList<T> {
             return;
         }
 
-        let curr = this.head;
-
-        for (let i = 0; curr && i < idx; i++) {
-            curr = curr.next;
-        }
+        const curr = this.getAt(idx);
 
         this.length++;
 
@@ -116,6 +112,25 @@ export default class DoublyLinkedList<T> {
         return curr.value;
     }
 
-    get(idx: number): T | undefined {}
-    removeAt(idx: number): T | undefined {}
+    get(idx: number): T | undefined {
+        return this.getAt(idx)?.value;
+    }
+
+    removeAt(idx: number): T | undefined {
+        const node = this.getAt(idx);
+
+        if (!node) {
+            return undefined;
+        }
+    }
+
+    private getAt(idx: number): Node<T> | undefined {
+        let curr = this.head;
+
+        for (let i = 0; curr && i < idx; i++) {
+            curr = curr.next;
+        }
+
+        return curr;
+    }
 }
