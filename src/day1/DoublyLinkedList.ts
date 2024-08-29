@@ -93,11 +93,11 @@ export default class DoublyLinkedList<T> {
         }
 
         if (curr.prev) {
-            curr.prev = curr.next;
+            curr.prev.next = curr.next;
         }
 
         if (curr.next) {
-            curr.next = curr.prev;
+            curr.next.prev = curr.prev;
         }
 
         if (curr === this.head) {
