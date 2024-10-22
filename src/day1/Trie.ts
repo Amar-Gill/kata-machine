@@ -42,5 +42,35 @@ export default class Trie {
 
     delete(item: string): void {}
 
-    find(partial: string): string[] {}
+    find(prefix: string): string[] {
+        let node = this.root;
+        const list: string[] = [];
+
+        // 1. Get the node for the given prefix
+        for (let c of prefix) {
+            let index = c.charCodeAt(0) - "a".charCodeAt(0);
+            if (!node.children[index]) {
+                return list; // No words found with this prefix
+            }
+            node = node.children[index];
+        }
+
+        // 2. Run a DFS from the node to build up list of words that match prefix
+        this.dfs(node, list, prefix);
+
+        return list;
+    }
+
+    private dfs(node: TrieNode, list: string[], word: string) {
+        if (node.isEndOfWord) {
+            list.push(word);
+        }
+
+        for (const [idx, childNode] of node.children.entries()) {
+            if (childNode) {
+                const ch = String.fromCharCode("a".charCodeAt(0) + idx);
+                this.dfs(childNode, list, word + ch);
+            }
+        }
+    }
 }
