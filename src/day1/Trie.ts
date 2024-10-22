@@ -33,7 +33,7 @@ export default class Trie {
     search(word: string): boolean {
         let node = this.root;
         for (let c of word) {
-            let index = c.charCodeAt(0) - "a".charCodeAt(0);
+            let index = this.getIndexForChar(c);
             if (!node.children[index]) {
                 return false; // Word not found
             }
@@ -45,7 +45,7 @@ export default class Trie {
     delete(word: string): void {
         let node = this.root;
         for (let c of word) {
-            let index = c.charCodeAt(0) - "a".charCodeAt(0);
+            let index = this.getIndexForChar(c);
             if (!node.children[index]) {
                 return; // Word not found
             }
@@ -60,7 +60,7 @@ export default class Trie {
 
         // 1. Get the node for the given prefix
         for (let c of prefix) {
-            let index = c.charCodeAt(0) - "a".charCodeAt(0);
+            let index = this.getIndexForChar(c);
             if (!node.children[index]) {
                 return list; // No words found with this prefix
             }
@@ -84,5 +84,9 @@ export default class Trie {
                 this.dfs(childNode, list, word + ch);
             }
         }
+    }
+
+    private getIndexForChar(char: string) {
+        return char.charCodeAt(0) - "a".charCodeAt(0);
     }
 }
