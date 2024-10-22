@@ -34,13 +34,25 @@ export default class Trie {
         let node = this.root;
         for (let c of word) {
             let index = c.charCodeAt(0) - "a".charCodeAt(0);
-            if (!node.children[index]) return false; // Word not found
+            if (!node.children[index]) {
+                return false; // Word not found
+            }
             node = node.children[index];
         }
         return node.isEndOfWord; // Return true if word exists, false otherwise
     }
 
-    delete(item: string): void {}
+    delete(word: string): void {
+        let node = this.root;
+        for (let c of word) {
+            let index = c.charCodeAt(0) - "a".charCodeAt(0);
+            if (!node.children[index]) {
+                return; // Word not found
+            }
+            node = node.children[index];
+        }
+        node.isEndOfWord = false;
+    }
 
     find(prefix: string): string[] {
         let node = this.root;
