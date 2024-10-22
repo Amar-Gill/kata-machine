@@ -30,8 +30,17 @@ export default class Trie {
         node.isEndOfWord = true; // Mark the end of the word
     }
 
+    search(word: string): boolean {
+        let node = this.root;
+        for (let c of word) {
+            let index = c.charCodeAt(0) - "a".charCodeAt(0);
+            if (!node.children[index]) return false; // Word not found
+            node = node.children[index];
+        }
+        return node.isEndOfWord; // Return true if word exists, false otherwise
+    }
+
     delete(item: string): void {}
 
     find(partial: string): string[] {}
 }
-
