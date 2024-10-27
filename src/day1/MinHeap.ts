@@ -49,11 +49,11 @@ export default class MinHeap {
         const rV = this.data[rIdx];
         const v = this.data[idx];
 
-        if (lV > rV && v > rV) {
+        if (lV >= rV && v >= rV) {
             this.data[idx] = rV;
             this.data[rIdx] = v;
             this.heapifyDown(rIdx);
-        } else if (rV > lV && v > lV) {
+        } else if (rV >= lV && v >= lV) {
             this.data[idx] = lV;
             this.data[lIdx] = v;
             this.heapifyDown(lIdx);
